@@ -245,17 +245,19 @@ username Fz3r0-ROOT privilege 15 secret cisco12345
 username User-ADMIN privilege 10 secret cisco12345
 !
 !############################################################################################
-!  + ENCRYPTION & SSH CONFIGURATION
+!  +  ENABLE PASSWORD + ADMINISTRATION LOGIN
 !############################################################################################
-!
-! ### ENABLE PASSWORD
 !
 enable secret fz3r012345
 service password-encryption
 security passwords min-length 10
 login block-for 120 attempts 3 within 60
+!          
+!############################################################################################
+!  + ADMINISTRATION + SSH CONFIGURATION + ENCRYPTION
+!############################################################################################
 !
-! ### CONSOLE PORT (ALLOWED FOR ADMINISTRATION)
+! ### CONSOLE SERIAL INTERFACE (ALLOWED FOR ADMINISTRATION)
 !
 line console 0
 password fz3r012345
@@ -263,6 +265,8 @@ login local
 logging synchronous
 exec-timeout 5 30
 exit
+!
+! ### AUX INTERFACE (NON-ALLOWED FOR ADMINISTRATION / UNUSED)
 !
 line aux 0
 privilege level 1
@@ -272,7 +276,7 @@ login local
 no exec
 exit
 !
-! ### SSH VTY CONFIGURATION
+! ### VTY INTERFACE (Virtual Teletype for SSH/TELNET)
 !
 line vty 0 8
 access-class 8 in
@@ -282,7 +286,7 @@ logging synchronous
 exec-timeout 5 30
 exit
 !
-! ### CRYPTO RSA FOR 2048 BITS VERSION 2
+! ### CRYPTOGRAPHIC RSA KEYS = 2048 BITS (256 BYTES) / SSH VERSION 2
 !
 crypto key generate rsa
 2048
@@ -304,7 +308,6 @@ show interface status
 !
 ping 10.1.0.1
 ping 10.1.0.11
-!
 !
 !############################################################################################
 !  + SAVE CONFIGURATION
