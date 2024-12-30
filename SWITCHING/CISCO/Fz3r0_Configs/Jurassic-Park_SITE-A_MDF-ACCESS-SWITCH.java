@@ -53,13 +53,14 @@ banner motd #
 
           -- Fz3r0 : JURASSIC PARK - SITE_A - NUBLAR ISLAND : LAS CINCO MUERTES --
 
-+ DEVICE    =  SWITCH-002 (IDF_B) = ACCESS
++ DEVICE    =  SWITCH-001 (MDF)
++ TYPE      =  CORE SWITCH
 + SITE      =  SITE_A
-+ LOCATION  =  RAPTOR PADDOK
++ LOCATION  =  MAINTANCE / UTILITY SHED
 + ADMIN 1   =  Fz3r0
 + ADMIN 2   =  Dennis Nedry
 
-+ IP        =  10.1.0.12/16
++ IP        =  10.1.0.10/16
 + GW        =  10.1.0.1 (FORTIGATE)
 
 * Github : Fz3r0           
@@ -81,7 +82,7 @@ banner motd #
 !  + HOSTNAME
 !############################################################################################
 !
-hostname SW2-IDF_B-SITE_A
+hostname SW-01-MDF-SITE_A
 !
 !############################################################################################
 !  + DOMAIN
@@ -95,47 +96,44 @@ ip domain-name Fz3r0.JP_SITE_A
 !############################################################################################
 !
 vlan 1
-name VLAN_1_default=OFF
+name V1-DefaultVLAN=OFF
 exit
 !
-vlan 2
-name VLAN_2_ALFA
+vlan 10
+name V10-MANAGEMENT
 exit
 !
-vlan 3
-name VLAN_3_BRAVO
+vlan 50
+name V50-ALFA_OPEN
 exit
 !
-vlan 4
-name VLAN_4_CHARLY
+vlan 60
+name V60-BRAVO_WPA2-PSK
 exit
 !
-vlan 5
-name VLAN_5_DELTA
+vlan 70
+name V70-CHARLIE_802.1X-EAP
 exit
 !
-vlan 6
-name VLAN_6_ECHO
+vlan 80
+name V80-DELTA_HOTSPOT-WISPr
 exit
 !
-vlan 7
-name VLAN_7_FOXTROT
-exit
-!
-vlan 69
-name VLAN_69_honeypot
+vlan 90
+name V90-ECHO_HOTSPOT2.0-PASSPOINT
 exit
 !
 vlan 66
-name VLAN_66_MANAGEMENT
+name V66-HONEYPOT
 exit
 !
 !############################################################################################
 !  + VIRTUAL INTERFACE CONFIGURATION (MANAGEMENT VLAN & DEFAULT VLAN)
 !############################################################################################
 !
-interface vlan 66
-ip address 10.1.0.12 255.255.0.0
+interface vlan 10
+description MANAGEMENT-VIRTUAL-INTERFACE-V10
+ip address 10.1.0.10 255.255.0.0
 no shutdown
 exit
 !
@@ -157,9 +155,9 @@ ip default-gateway 10.1.0.1
 !
 interface range ethernet 0/0-3
 switchport
-description VLAN_2_ALFA-WIRED_PC=ACCESS
+description V50-ALFA_OPEN-WIRED_PC=ACCESS
 switchport mode ACCESS
-switchport ACCESS VLAN 2
+switchport ACCESS VLAN 50
 switchport nonegotiate
 lldp TRANSMIT
 lldp RECEIVE
@@ -183,10 +181,10 @@ exit
 !
 interface range ethernet 1/0-3
 switchport
-description VLANS-3,4,5,6,7-ACCESS_POINTS=TRUNK
+description VLANS-50,60,70,80,90_WLAN-ACCESS-POINTS=TRUNK
 switchport mode TRUNK
-switchport TRUNK NATIVE vlan 66
-switchport TRUNK ALLOWED vlan add 3,4,5,6,7
+switchport TRUNK NATIVE vlan 10
+switchport TRUNK ALLOWED vlan add 50,60,70,80,90
 switchport nonegotiate
 lldp TRANSMIT
 lldp RECEIVE
@@ -202,7 +200,7 @@ exit
 !
 interface range ethernet 2/0-1
 switchport
-description VLAN_69_honeypot-EMPTY_INTERFACES=ACCESS(OFF)
+description VLAN_66_HONEYPOT-EMPTY_INTERFACES=ACCESS(OFF)
 switchport access vlan 69
 switchport nonegotiate
 NO lldp TRANSMIT
@@ -226,10 +224,10 @@ exit
 !
 interface range ethernet 3/0-3
 switchport
-description VLANS-3,4,5,6,7-SWITCH-LINK-CASCADE=TRUNK
+description VLANS-50,60,70,80,90-SWITCH-LINK-CASCADE=TRUNK
 switchport mode TRUNK
-switchport TRUNK NATIVE vlan 66
-switchport TRUNK ALLOWED vlan add 3,4,5,6,7
+switchport TRUNK NATIVE vlan 10
+switchport TRUNK ALLOWED vlan add 50,60,70,80,90
 switchport nonegotiate
 lldp TRANSMIT
 lldp RECEIVE
@@ -324,5 +322,4 @@ write memory
 reload
 !
 ! - - - - - - - - - - - - - - - - - - - - - END COPY - - - - - - - - - - - - - - - - - - - -
-
 
