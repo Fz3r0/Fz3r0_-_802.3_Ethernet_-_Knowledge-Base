@@ -158,15 +158,16 @@ switchport
 description V50-ALFA_OPEN-WIRED_PC=ACCESS
 switchport mode ACCESS
 switchport ACCESS VLAN 50
-switchport nonegotiate
-lldp TRANSMIT
-lldp RECEIVE
+!switchport nonegotiate
+!lldp TRANSMIT
+!lldp RECEIVE
 cdp ENABLE
 spanning-tree PORTFAST
 spanning-tree BPDUGUARD enable
 ip DHCP SNOOPING limit rate 30
 switchport port-security
 switchport port-security MAXIMUM 2
+!
 switchport port-security mac-address F0:F0:F0:F0:F0:F0
 switchport port-security mac-address sticky 
 switchport port-security aging time 1440
@@ -182,15 +183,16 @@ exit
 interface range ethernet 1/0-3
 switchport
 description VLANS-50,60,70,80,90_WLAN-ACCESS-POINTS=TRUNK
+switchport TRUNK encapsulation DOT1Q
 switchport mode TRUNK
 switchport TRUNK NATIVE vlan 10
 switchport TRUNK ALLOWED vlan add 50,60,70,80,90
-switchport nonegotiate
-lldp TRANSMIT
-lldp RECEIVE
+!switchport nonegotiate
+!lldp TRANSMIT
+!lldp RECEIVE
 cdp ENABLE
 ip dhcp snooping TRUST
-ip arp inspection TRUST
+!ip arp inspection TRUST
 spanning-tree bpduguard DISABLE
 spanning-tree portfast DISABLE
 no shutdown
@@ -201,14 +203,14 @@ exit
 interface range ethernet 2/0-1
 switchport
 description VLAN_66_HONEYPOT-EMPTY_INTERFACES=ACCESS(OFF)
-switchport access vlan 69
-switchport nonegotiate
-NO lldp TRANSMIT
-NO lldp RECEIVE
+switchport access vlan 66
+!switchport nonegotiate
+!NO lldp TRANSMIT
+!NO lldp RECEIVE
 NO cdp ENABLE
 spanning-tree PORTFAST
 spanning-tree BPDUGUARD enable
-ip DHCP SNOOPING limit rate 0
+ip DHCP SNOOPING limit rate 1
 switchport port-security
 switchport port-security MAXIMUM 1
 switchport port-security mac-address F0:F0:F0:F0:F0:F0
@@ -225,13 +227,18 @@ exit
 interface range ethernet 3/0-3
 switchport
 description VLANS-50,60,70,80,90-SWITCH-LINK-CASCADE=TRUNK
+switchport TRUNK encapsulation DOT1Q
 switchport mode TRUNK
 switchport TRUNK NATIVE vlan 10
 switchport TRUNK ALLOWED vlan add 50,60,70,80,90
-switchport nonegotiate
-lldp TRANSMIT
-lldp RECEIVE
+!switchport nonegotiate
+!lldp TRANSMIT
+!lldp RECEIVE
 cdp ENABLE
+ip dhcp snooping TRUST
+!ip arp inspection TRUST
+spanning-tree bpduguard DISABLE
+spanning-tree portfast DISABLE
 no shutdown
 exit
 !
@@ -248,7 +255,7 @@ username User-ADMIN privilege 10 secret cisco12345
 !
 enable secret fz3r012345
 service password-encryption
-security passwords min-length 10
+!security passwords min-length 10
 login block-for 120 attempts 3 within 60
 !          
 !############################################################################################
@@ -297,6 +304,7 @@ exit
 !
 show vlan
 show ip interface brief
+show interface trunk
 show interface brief
 show interface status
 !
@@ -322,7 +330,4 @@ write memory
 reload
 !
 ! - - - - - - - - - - - - - - - - - - - - - END COPY - - - - - - - - - - - - - - - - - - - -
-
-
-
 
