@@ -142,7 +142,7 @@ When congestion occurs or ACKs are delayed, the window size is reduced to slow d
 
 If the **ACK** for a segment is lost, the sender waits for a **retransmission timer** to expire before retransmitting all segments.
 
----
+
 
 ## 4. **📝 TCP and UDP Headers**
 
