@@ -17,12 +17,12 @@ Transmission Control Protocol (TCP) and User Datagram Protocol (UDP) are both pr
 
 TCP and UDP are both part of the Transport Layer, which ensures reliable data transfer between systems. A hybrid approach that uses both TCP and UDP can be used to address the challenges of data transfer. 
 
-## Overview
+## TCP vs UDP
 
-- **TCP**: Reliable, slower, connection-oriented.
-- **UDP**: Unreliable, faster, connectionless.
+![image](https://github.com/user-attachments/assets/6467263f-3f04-4fa2-b953-915df99af28f)
 
-## TCP VS UDP
+- **TCP**: **Reliable, slower, connection-oriented.** :: Guarantees reliable delivery with error checking, but slower due to the overhead.
+- **UDP**: **Unreliable, faster, connectionless.** :: Provides faster delivery without error checking, suitable for real-time applications where slight data loss is acceptable.
 
 | **Feature**               | **TCP**                                                | **UDP**                                           |
 |---------------------------|--------------------------------------------------------|---------------------------------------------------|
@@ -39,14 +39,6 @@ TCP and UDP are both part of the Transport Layer, which ensures reliable data tr
 | **Handshakes**             | 3-way handshake (Start) + 4-way termination (End)      | None                                              |
 | **Error Recovery**         | Yes                                                   | No                                                |
 | **Error Detection**        | Yes                                                   | Yes (checksum only)                               |
-
-
-## TCP vs UDP
-
-![image](https://github.com/user-attachments/assets/6467263f-3f04-4fa2-b953-915df99af28f)
-
-- **TCP**: Guarantees reliable delivery with error checking, but slower due to the overhead.
-- **UDP**: Provides faster delivery without error checking, suitable for real-time applications where slight data loss is acceptable.
 
 ### Three-Way Handshake (Connection Setup)
 
