@@ -11,70 +11,68 @@
 
 ---
 
-# TCP & UDP
+# 📦 TCP & UDP
 
 Transmission Control Protocol (TCP) and User Datagram Protocol (UDP) are both protocols that transfer data over the internet. TCP is more reliable, while UDP is faster but less reliable. 
 
 TCP and UDP are both part of the Transport Layer, which ensures reliable data transfer between systems. A hybrid approach that uses both TCP and UDP can be used to address the challenges of data transfer. 
 
-## TCP vs UDP
+## ⚡ TCP vs UDP
 
 ![image](https://github.com/user-attachments/assets/6467263f-3f04-4fa2-b953-915df99af28f)
 
-- **TCP**: **Reliable, slower, connection-oriented.** :: Guarantees reliable delivery with error checking, but slower due to the overhead.
-- **UDP**: **Unreliable, faster, connectionless.** :: Provides faster delivery without error checking, suitable for real-time applications where slight data loss is acceptable.
+- **📦 TCP**: **Reliable, slower, connection-oriented.** :: Guarantees reliable delivery with error checking, but slower due to the overhead.
+- **⚡ UDP**: **Unreliable, faster, connectionless.** :: Provides faster delivery without error checking, suitable for real-time applications where slight data loss is acceptable.
 
-| **Feature**               | **TCP**                                                | **UDP**                                           |
-|---------------------------|--------------------------------------------------------|---------------------------------------------------|
-| **Reliability**            | Reliable (error correction, retransmissions)           | Unreliable (no error correction)                 |
-| **Speed**                  | Slower (due to error handling and overhead)            | Faster (no error correction)                     |
-| **Connection Type**        | Connection-oriented (establishes and terminates a connection) | Connectionless (no setup needed)                |
-| **Overhead**               | High (more control bits for tracking and acknowledgment) | Low (minimal overhead)                          |
-| **Use Cases**              | Web, email, file transfers (e.g., FTP, HTTP, SMTP)     | Real-time applications (e.g., VoIP, video streaming) |
-| **Segmentation**           | Segments are larger due to error checking              | Smaller segments (fewer checks)                  |
-| **Flow Control**           | Yes (TCP can adjust speed based on congestion)         | No (no flow control)                             |
-| **Retransmission**         | Yes (on error)                                        | No retransmission                                 |
-| **Sequence Numbers**       | Yes                                                   | No                                                |
-| **Acknowledgments**        | Yes                                                   | No                                                |
-| **Handshakes**             | 3-way handshake (Start) + 4-way termination (End)      | None                                              |
-| **Error Recovery**         | Yes                                                   | No                                                |
-| **Error Detection**        | Yes                                                   | Yes (checksum only)                               |
+| **Feature**               | **📦 TCP**                                               | **⚡ UDP**                                           |
+|---------------------------|---------------------------------------------------------|-----------------------------------------------------|
+| **Reliability**            | Reliable <br> (error correction, retransmissions) 📋         | Unreliable<br>  (no error correction) ❌                 |
+| **Speed**                  | Slower<br>  (due to error handling and overhead) 🐢          | Faster<br>  (no error correction) 🚀                    |
+| **Connection Type**        | Connection-oriented<br>  (establishes and terminates a connection) 🔗 | Connectionless<br>  (no setup needed) 🌐               |
+| **Overhead**               | High<br>  (more control bits for tracking and acknowledgment) 📊 | Low<br>  (minimal overhead) 📉                           |
+| **Use Cases**              | Web, email, file transfers (e.g., FTP, HTTP, SMTP) 🌍  | Real-time applications (e.g., VoIP, video streaming) 📞 🎥 |
+| **Segmentation**           | Segments are larger due to error checking 🔍           | Smaller segments<br>  (fewer checks) 🧩                  |
+| **Flow Control**           | Yes<br>  (TCP can adjust speed based on congestion) ⚖️       | No<br>  (no flow control) 🚫                            |
+| **Retransmission**         | Yes<br>  (on error) 🔄                                      | No retransmission 🚫                               |
+| **Sequence Numbers**       | Yes<br>  🧮                                                 | No                                                  |
+| **Acknowledgments**        | Yes<br>  ✅                                                 | No                                                  |
+| **Handshakes**             | 3-way handshake (Start) + 4-way termination (End) ✋🤚  | None                                                |
+| **Error Recovery**         | Yes<br>  🔧                                                | No                                                  |
+| **Error Detection**        | Yes<br>  ✅                                                | Yes <br>  (but checksum only!!!) 🧮                              |
 
-### Three-Way Handshake (Connection Setup)
+### 🔑 Three-Way Handshake (Connection Setup)
 
 1. **SYN**: Host A sends SYN to Host B with a sequence number (SEQ=x).
 2. **SYN-ACK**: Host B replies with SYN-ACK, using sequence number (y) and ACK number (x+1).
 3. **ACK**: Host A sends ACK with number (y+1), confirming the connection.
 
-### Four-Way Termination (Connection Teardown)
+### ⚰️ Four-Way Termination (Connection Teardown)
 
 1. **FIN**: Host A sends FIN to terminate the connection.
 2. **ACK**: Host B acknowledges the FIN.
 3. **FIN**: Host B sends its own FIN.
 4. **ACK**: Host A acknowledges Host B’s FIN, ending the connection.
 
-### Sequence & Acknowledgment Numbers
+### 🔢 Sequence & Acknowledgment Numbers
 
 - TCP uses **sequence numbers** (SEQ) to track data order.
 - **Acknowledgment numbers** (ACK) confirm receipt of data.
 
-## When to Use TCP or UDP
+## 💡 When to Use TCP or UDP
 
-- **TCP**: When data reliability and accuracy are crucial (e.g., file transfer, web browsing).
-- **UDP**: When speed is more critical than reliability (e.g., VoIP, video streaming).
+- **📦 TCP**: When data reliability and accuracy are crucial (e.g., file transfer, web browsing). 
+- **⚡ UDP**: When speed is more critical than reliability (e.g., VoIP, video streaming).
 
 
-# TCP Features 
+# 📦 TCP Features 
 
 This cheatsheet covers key features of TCP, including multiplexing using port numbers, flow control, and reliability (error detection and recovery).
 
-## 1. **Multiplexing using Port Numbers**
+## 1. **🔢 Multiplexing using Port Numbers**
 
 Multiplexing allows multiple applications to use the same network interface simultaneously by distinguishing them using **port numbers**. When you run multiple applications (e.g., web browsing, email, FTP), each will use a unique port number to identify which data belongs to which application.
 
-### Port Number Ranges:
-
-### Port Number Ranges
+### 📌 Port Number Ranges:
 
 | **Port Range**                       | **Number Range**    | **Description**                                      |
 |--------------------------------------|---------------------|------------------------------------------------------|
@@ -84,7 +82,7 @@ Multiplexing allows multiple applications to use the same network interface simu
 | **Dynamic port numbers**             | 49152–65535         | Temporary ports used for communication.             |
 
 
-### Common Well-Known Ports:
+### 🌍 Common Well-Known Ports:
 
 | **TCP Service** | **Description**                    | **Port** |
 |-----------------|------------------------------------|----------|
@@ -96,7 +94,7 @@ Multiplexing allows multiple applications to use the same network interface simu
 | HTTP            | Hyper Text Transfer Protocol        | 80      |
 | HTTPS           | Hyper Text Transfer Protocol Secure | 443     |
 
-### HINT: What is a Socket?
+### 💡 HINT: What is a Socket?
 
 A **socket** consists of three components:
 
@@ -111,60 +109,55 @@ Example: A socket on your laptop for web browsing might look like:
 
 This combination uniquely identifies a connection.
 
-
-
-## 2. **Flow Control Using Windowing**
+## 2. **⚙️ Flow Control Using Windowing**
 
 Flow control manages the rate at which data is sent to ensure that the receiver is not overwhelmed.
 
-### Windowing Concept:
+### 🪟 Windowing Concept:
 
 - **Window size**: Indicates how much data can be sent before an acknowledgment is required.
 - **Sliding window**: The window size can vary during the connection's lifetime.
 
-#### Example:
+#### 📊 Example:
 
 - A **window size of 1** means the sender must wait for an acknowledgment after each byte.
 - A **window size of 3** means the sender can send 3 bytes before waiting for an acknowledgment.
 
-When a congestion occurs or ACKs are delayed, the window size is reduced to slow down transmission.
+When congestion occurs or ACKs are delayed, the window size is reduced to slow down transmission.
 
-### Window Size in Action:
+### 🚦 Window Size in Action:
 
 - If **Host A** sends segments 1, 2, and 3, and **Segment 2** is lost, **Host B** sends an **ACK 2** back to **Host A**, indicating it is expecting **Segment 2** next.
 - **Host A** resends **Segment 2**, and **Host B** can then proceed to ACK **Segment 4**.
 
-
-## 3. **Reliability (Error Detection and Error Recovery)**
+## 3. **🔧 Reliability (Error Detection and Error Recovery)**
 
 - **Error detection**: Identifies corrupted data using checksums.
 - **Error recovery**: Ensures lost or corrupted data is resent using **Sequence Numbers** and **Acknowledgments**.
 
-### How it Works:
+### 🔄 How it Works:
 
 1. **Error Detection**: Each segment includes a checksum. The sender calculates it and the receiver checks if it matches.
 2. **Error Recovery**: If a segment is lost or corrupted, the receiver will not send an ACK. The sender then retransmits the segment.
 
 If the **ACK** for a segment is lost, the sender waits for a **retransmission timer** to expire before retransmitting all segments.
 
-
-
 ---
 
-## 4. **TCP and UDP Headers**
+## 4. **📝 TCP and UDP Headers**
 
-### TCP Header:
+### 📜 TCP Header:
 
 The **TCP header** is typically 20 bytes and contains various fields like the source and destination port numbers, sequence number, acknowledgment number, flags, and more.
 
-#### Key Fields:
+#### 🏷️ Key Fields:
 - **Flags**: Used for controlling connection establishment and termination (e.g., SYN, ACK).
 - **Sequence Number**: Used for sequencing segments.
 - **Window Size**: Indicates how many bytes the receiver can accept.
 
 ---
 
-### UDP Header:
+### 🗂️ UDP Header:
 
 The **UDP header** is much simpler, consisting of only four fields:
 1. Source Port
@@ -173,6 +166,7 @@ The **UDP header** is much simpler, consisting of only four fields:
 4. Checksum
 
 Unlike TCP, UDP does not provide reliability or flow control.
+
 
 ---
 
