@@ -222,15 +222,11 @@ The **UDP header** is much simpler, consisting of only four fields (+ Data), Unl
 
 
 
-# https://www.9tut.com/tcp-and-udp-tutorial
-
-
-
-
 
 # 📚🗂️🎥 Resources
 
 - https://www.9tut.com/osi-model-tutorial
+- https://www.9tut.com/tcp-and-udp-tutorial
 - https://www.google.com/search?q=tcp+and+udp&rlz=1C1VDKB_esMX1103MX1103&oq=tcp+and+udp&gs_lcrp=EgZjaHJvbWUyDggAEEUYORhDGIAEGIoFMgwIARAAGEMYgAQYigUyDAgCEAAYQxiABBiKBTIMCAMQABhDGIAEGIoFMgcIBBAAGIAEMgYIBRBFGDwyBggGEEUYPDIGCAcQRRhB0gEIMTM0M2owajeoAgCwAgA&sourceid=chrome&ie=UTF-8
 - https://digilent.com/blog/udp-vs-tcp/
 - https://en.wikipedia.org/wiki/User_Datagram_Protocol
