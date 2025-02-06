@@ -1,4 +1,4 @@
-# 🔥🧱🛡️ Cisco CCNA: `OSI Model`
+# 🔥🧱🛡️ Cisco CCNA: `WAN`
 
 ![My Video](https://user-images.githubusercontent.com/94720207/165892585-b830998d-d7c5-43b4-a3ad-f71a07b9077e.gif)
 
@@ -7,7 +7,7 @@
 
 ---
  
-#### Keywords: `OSI Model` `Reference Models`
+#### Keywords: `WAN`
 
 ---
 
