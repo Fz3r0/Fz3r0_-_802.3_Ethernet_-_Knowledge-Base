@@ -146,31 +146,51 @@ If the **ACK** for a segment is lost, the sender waits for a **retransmission ti
 
 ## 4. **📝 TCP and UDP Headers**
 
-### 📜 TCP Header:
+![image](https://github.com/user-attachments/assets/541cb782-7b56-44f6-b6a0-dfdcf1014572)
+
+## 📜 TCP Header
 
 The **TCP header** is typically 20 bytes and contains various fields like the source and destination port numbers, sequence number, acknowledgment number, flags, and more.
 
-#### 🏷️ Key Fields:
-- **Flags**: Used for controlling connection establishment and termination (e.g., SYN, ACK).
-- **Sequence Number**: Used for sequencing segments.
-- **Window Size**: Indicates how many bytes the receiver can accept.
-
----
-
-### 🗂️ UDP Header:
-
-The **UDP header** is much simpler, consisting of only four fields:
-1. Source Port
-2. Destination Port
-3. Length
-4. Checksum
-
-Unlike TCP, UDP does not provide reliability or flow control.
+| **Field**                | **Size (bits)** | **Description**                                                                                             |
+|--------------------------|-----------------|-------------------------------------------------------------------------------------------------------------|
+| **Source Port**           | 16              | Identifies the sending port.                                                                                |
+| **Destination Port**      | 16              | Identifies the receiving port.                                                                              |
+| **Sequence Number**       | 32              | Identifies the sequence number of the first byte of data in this segment.                                   |
+| **Acknowledgment Number** | 32              | If ACK flag is set, it indicates the next sequence number the sender expects to receive.                    |
+| **Data Offset**           | 4               | Specifies the size of the TCP header in 32-bit words.                                                        |
+| **Reserved**              | 3               | Reserved for future use; should be set to zero.                                                              |
+| **Flags**                 | 9               | Contains control flags: CWR, ECE, URG, ACK, PSH, RST, SYN, FIN.                                             |
+| **Window Size**           | 16              | Specifies the number of bytes the sender is willing to accept from the receiver.                            |
+| **Checksum**              | 16              | Provides error-checking for the header, payload, and an IP pseudo-header.                                   |
+| **Urgent Pointer**        | 16              | If the URG flag is set, it points to the last urgent data byte.                                              |
+| **Options**               | Variable        | Allows for various extensions or options (e.g., Maximum Segment Size, Time Stamp).                           |
+| **Data**                  | Variable        | The payload data being transmitted.                                                                          |
 
 
----
+## UDP Header
 
-By understanding these TCP features, you'll have a solid foundation for networking and troubleshooting TCP connections.
+The **UDP header** is much simpler, consisting of only four fields (+ Data), Unlike TCP, UDP does not provide reliability or flow control:
+
+| **Field**            | **Size (bits)** | **Description**                                                                                 |
+|----------------------|-----------------|-------------------------------------------------------------------------------------------------|
+| **Source Port**       | 16              | Identifies the sender's port.                                                                   |
+| **Destination Port**  | 16              | Identifies the receiver's port.                                                                 |
+| **Length**            | 16              | Specifies the length of the UDP datagram, including both header and data.                        |
+| **Checksum**          | 16              | Optional in IPv4 for error-checking of the header and data. Required in most cases in IPv6.       |
+| **Data**              | Variable        | The payload data being transmitted.                                                              |
+
+## Differences Between TCP and UDP Headers
+
+| **Field**            | **TCP**                                          | **UDP**                                          |
+|----------------------|-------------------------------------------------|-------------------------------------------------|
+| **Header Length**    | 20–60 bytes (with options)                      | 8 bytes                                         |
+| **Reliability**      | Provides reliable delivery (acknowledgments, retransmissions, flow control) | Unreliable (no acknowledgment, no retransmission) |
+| **Connection**       | Connection-oriented (establishes and terminates connections) | Connectionless (no setup or teardown)          |
+| **Flow Control**     | Yes, uses window size for flow control          | No flow control                                |
+| **Error Checking**   | Checks header and data (checksum)               | Checks header and data (checksum, optional in IPv4) |
+| **Segmentation**     | Segments data into smaller pieces if needed     | Does not segment; the application must handle it |
+| **Speed**           | Slower (due to reliability and connection management) | Faster (less overhead)                         |
 
 
 
@@ -184,9 +204,8 @@ By understanding these TCP features, you'll have a solid foundation for networki
 
 
 
-## TCP vs UDP Headers
 
-![image](https://github.com/user-attachments/assets/541cb782-7b56-44f6-b6a0-dfdcf1014572)
+
 
 
 
@@ -213,6 +232,9 @@ By understanding these TCP features, you'll have a solid foundation for networki
 
 - https://www.9tut.com/osi-model-tutorial
 - https://www.google.com/search?q=tcp+and+udp&rlz=1C1VDKB_esMX1103MX1103&oq=tcp+and+udp&gs_lcrp=EgZjaHJvbWUyDggAEEUYORhDGIAEGIoFMgwIARAAGEMYgAQYigUyDAgCEAAYQxiABBiKBTIMCAMQABhDGIAEGIoFMgcIBBAAGIAEMgYIBRBFGDwyBggGEEUYPDIGCAcQRRhB0gEIMTM0M2owajeoAgCwAgA&sourceid=chrome&ie=UTF-8
+- https://digilent.com/blog/udp-vs-tcp/
+- https://en.wikipedia.org/wiki/User_Datagram_Protocol
+- https://en.wikipedia.org/wiki/Transmission_Control_Protocol
   
 ---
 
